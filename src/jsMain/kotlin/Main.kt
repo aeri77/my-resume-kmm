@@ -25,12 +25,27 @@ fun main() {
                     alignSelf(AlignSelf.Center)
                 }
             }) {
-                Div({
-                    style {
-                        textAlign("center")
+                Div(
+                    attrs = {
+                        style {
+                            backgroundColor(Color.transparent)
+                            textAlign("center")
+                            fontFamily("Roboto", "sans-serif")
+                            fontWeight(200)
+                        }
+                        onMouseEnter { event ->
+                            println("button FocusIn at $event")
+                        }
+                        onClick { event ->
+                            // event is of `SyntheticMouseEvent` type
+                            println("button clicked at ${event.movementX}, ${event.movementY}")
+
+                            val nativeEvent =
+                                event.nativeEvent // [MouseEvent](https://developer.mozilla.org/en/docs/Web/API/MouseEvent)
+                        }
                     }
-                }) {
-                    Text("Toolbar")
+                ) {
+                    Text("Button")
                 }
             }
         }
@@ -38,10 +53,10 @@ fun main() {
             style {
                 width(100.percent)
                 height(340.px)
-                property("object-fit","cover")
+                property("object-fit", "cover")
             }
         }
-        repeat(100){
+        repeat(100) {
             Div({
                 style {
                     margin(16.px)
@@ -66,4 +81,5 @@ fun main() {
         }
     }
 }
+
 

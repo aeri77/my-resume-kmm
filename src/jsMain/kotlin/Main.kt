@@ -2,6 +2,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import org.jetbrains.compose.web.css.*
+import org.jetbrains.compose.web.css.keywords.auto
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.renderComposable
 
@@ -12,9 +13,9 @@ fun main() {
         Header({
             style {
                 width(100.percent)
-                backgroundColor(Color.blueviolet)
+                backgroundColor(Color.transparent)
                 alignContent(AlignContent.Center)
-                position(Position.Sticky)
+                position(Position.Fixed)
                 property("zIndex", 109)
             }
         }) {
@@ -33,25 +34,34 @@ fun main() {
                 }
             }
         }
-        Div({
+        Img("https://foyr.com/learn/wp-content/uploads/2019/01/game-room-decor-ideas-1536x864.jpg") {
             style {
-                margin(16.px)
+                width(100.percent)
+                height(340.px)
+                property("object-fit","cover")
             }
-        }) {
-            Button(attrs = {
-                onClick { count -= 1 }
+        }
+        repeat(100){
+            Div({
+                style {
+                    margin(16.px)
+                }
             }) {
-                Text("hello")
-            }
+                Button(attrs = {
+                    onClick { count -= 1 }
+                }) {
+                    Text("hello")
+                }
 
-            Span({ style { padding(15.px) } }) {
-                Text("$count")
-            }
+                Span({ style { padding(15.px) } }) {
+                    Text("$count")
+                }
 
-            Button(attrs = {
-                onClick { count += 1 }
-            }) {
-                Text("+")
+                Button(attrs = {
+                    onClick { count += 1 }
+                }) {
+                    Text("+")
+                }
             }
         }
     }
